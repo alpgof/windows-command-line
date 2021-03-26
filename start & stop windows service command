@@ -1,0 +1,135 @@
+Windows Service management through the command line is really a good approach when you want to manage plenty of services and perform day to day actions like stop, start and restart
+
+I think you would agree, If I say GUI is fun for entry-level but when it comes to performing the job smartly and creating automation for efficiency. Command-line is your key
+
+PowerShell has a lot of commands to help us manage the windows server better and create automation and do the boring (or) repetitive tasks swiftly
+
+In this article, we are going to see How to Manage Services from the Windows Command line using PowerShell. We are going to see various examples of  How to List , Stop, Start, Restart a Single Service or multiple Services.
+
+To Manage the Services in Windows, We have a pack of Powershell commands and each does a unique job in the Windows Service Management. It helps us perform our day to day needs like Stopping, Starting, Restarting, Listing, Searching, etc
+
+In this article, we are going to see various Windows Powershell commands  such as
+
+Get-Sevice
+Stop-Service
+Start-Service
+Where-Object
+Restart-Service
+Not just this, There are few more and look at the index to know what this article is packaged with
+
+I am thrilled and I hope you are too. Let’s march on.
+
+ 
+
+Table of Contents	
+Index
+How to List the Services in Windows Command Line
+How to List only Running or Stopped  Services in PowerShell
+How to List a Service or Get Service by Name in Windows
+How to Search for the Service[s] by More Filters
+How to Stop the Service[s] in Windows Command Line
+How to Start the Service[s] in Windows Command Line
+How to Restart the Service[s] in Windows Command Line
+Index
+How to List the Services  Windows Command Line
+How to List only Running or Stopped  Services in PowerShell
+How to List a Service or Get Service by Name in Windows
+How to Search for the Service[s] by Status, DisplayName, Search String etc.
+How to Stop the Service[s] in Windows Command Line
+How to Start the Service[s] in Windows Command Line
+How to Restart the Service[s] in Windows Command Line
+ 
+
+How to List the Services in Windows Command Line
+To List, all the Services in your Windows PC or Server, Perform the Following Steps
+
+Open PowerShell Terminal or PowerShell ISE as Administrator
+Type Get-Service in the Terminal
+You would be presented with all the available Services on the Windows Machine
+
+The result would container three columns as shown below, Status, Name, and DisplayName
+
+You can search or List a Single or Multiple Services based on any of these columns, which we will see in upcoming sections on this article.
+
+PS C:\Users\sarav> Get-Service
+
+Status   Name               DisplayName                           
+------   ----               -----------                           
+Stopped  AarSvc_ba23f       Agent Activation Runtime_ba23f        
+Stopped  AJRouter           AllJoyn Router Service                
+Stopped  ALG                Application Layer Gateway Service     
+Stopped  AppIDSvc           Application Identity                  
+Running  Appinfo            Application Information               
+Stopped  AppReadiness       App Readiness                         
+Running  AppXSvc            AppX Deployment Service (AppXSVC)     
+Running  AudioEndpointBu... Windows Audio Endpoint Builder        
+Running  Audiosrv           Windows Audio                         
+Stopped  autotimesvc        Cellular Time                         
+Stopped  AxInstSV           ActiveX Installer (AxInstSV)          
+Stopped  BcastDVRUserSer... GameDVR and Broadcast User Service_...
+Stopped  BDESVC             BitLocker Drive Encryption Service    
+ 
+
+ 
+
+How to List only Running or Stopped  Services in PowerShell
+In this section we are going to see how to list the windows services based on a Specific State they are in.
+
+To List, Either only Running and Stopped Services, PowerShell Get-Service Command can be used along with one more Filtering command named Where-Object .
+
+It acts like a grep of Linux and it does the job so perfect and precise
+
+So to List Running or Stopped Services in Windows Command line you should do the following
+
+Open PowerShell Terminal or PowerShell ISE as Administrator
+Use one of the following command based on your requirement
+To List Only The Running Services
+Get-Service | Where-Object {$_.Status -eq "Running" }
+To List only the Stopped Services
+Get-Service | Where-Object {$_.Status -eq "Stopped" }
+In fact,  You can Use any of the Following State Value in place of Running or Stopped to get the Services in that State.
+
+Value	Meaning
+ContinuePending	The service has been paused and is about to continue.
+Paused	The service is paused.
+PausePending	The service is in the process of pausing.
+Running	The service is running.
+StartPending	The service is in the process of starting.
+Stopped	The service is not running.
+StopPending	The service is in the process of stopping.
+For example, If you would like to Get a Service which is in Paused State  then your command should be like this
+
+Get-Service | Where-Object {$_.Status -eq "Paused" }
+ 
+
+ 
+How to List a Service or Get Service by Name in Windows
+To List or to Get a Service by Name you have to be aware of the Name of the Service or at least a part of the Service name as we can use * wildcard to find the rest.
+
+To List or to Get Service by Name do the following
+
+Open PowerShell Terminal or PowerShell ISE as Administrator
+Use the following Get-Service the command along with a -Name (or) -DisplayName parameter
+To List a Service named Jenkins I can use any of the following commands and Be informed that Service Name is Case Insensitive
+
+Get-Service -Name jenkins
+
+(or)
+
+Get-Service -Name jenkins
+
+(or)
+
+Get-Service -DisplayName jenkins
+
+(or)
+
+Get-Service -Name JEnKins
+
+(or)
+
+Get-Service -DisplayName JEnKins
+
+(or)
+
+Get-Service -Name  jen*s
