@@ -1,0 +1,36 @@
+CMD Usage:
+Starts a new instance of the Windows command interpreter
+
+CMD [/A | /U] [/Q] [/D] [/E:ON | /E:OFF] [/F:ON | /F:OFF] [/V:ON | /V:OFF]
+    [[/S] [/C | /K] string]
+
+/C      Carries out the command specified by string and then terminates
+/K      Carries out the command specified by string but remains
+/S      Modifies the treatment of string after /C or /K (see below)
+/Q      Turns echo off
+/D      Disable execution of AutoRun commands from registry (see below)
+/A      Causes the output of internal commands to a pipe or file to be ANSI
+/U      Causes the output of internal commands to a pipe or file to be
+        Unicode
+/T:fg   Sets the foreground/background colors (see COLOR /? for more info)
+/E:ON   Enable command extensions (see below)
+/E:OFF  Disable command extensions (see below)
+/F:ON   Enable file and directory name completion characters (see below)
+/F:OFF  Disable file and directory name completion characters (see below)
+/V:ON   Enable delayed environment variable expansion using ! as the
+        delimiter. For example, /V:ON would allow !var! to expand the
+        variable var at execution time.  The var syntax expands variables
+        at input time, which is quite a different thing when inside of a FOR
+        loop.
+/V:OFF  Disable delayed environment expansion.
+
+Usage Example:
+1. start command window and execute command
+   start cmd /c "..."
+   start cmd /k "..."
+2. start specific title command window 
+   start "..." cmd 
+3. list specific title command window
+   tasklist /V /FI "WindowTitle eq Administrator*"
+4. kill specific title command window
+   taskkill /F /FI "WindowTitle eq  Administrator:  \"CMD with custom title\"" /T
