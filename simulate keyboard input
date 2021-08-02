@@ -1,0 +1,4 @@
+set wshshell=createobject("wscript.shell")
+wscript.sleep 3000
+wshshell.sendkeys"{ENTER}"
+wscript.quit
