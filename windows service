@@ -81,3 +81,8 @@
 
 　　　　删除成功会提示 [SC] DeleteService 成功
     
+Start/Stop Service
+rem start openssh service
+powershell -c "Get-Service -DisplayName "*ssh*"|Where-Object {$_.Status -eq 'Stopped'}|Start-Service"
+rem stop openssh service
+rem powershell -c "Get-Service -DisplayName "*ssh*"|Where-Object {$_.Status -eq 'Running'}|Stop-Service"
