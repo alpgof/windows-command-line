@@ -1,5 +1,11 @@
-U盘使用FAT32需要特殊操作, U盘一定要使用FAT32装Win10 2004，就需要对install.wim这个大于4G的文件进行分割了。
+1. Unzip or mount window clean image (iso file).
 
-用管理员权限运行CMD，假设install.wim的位置处于虚拟光驱G盘的“sources”目录，想要将这文件分割为两部分，放置到D盘，具体的命令为：
+2. Create UsbKey  and copy the image file to UsbKey.
 
-Dism /Split-Image /ImageFile:"G:\sources\install.wim" /SWMFile:D:\install.swm /FileSize:4000
+   Note: U盘使用FAT32需要特殊操作, U盘一定要使用FAT32装Win10 2004，就需要对install.wim这个大于4G的文件进行分割了。
+
+     用管理员权限运行CMD，假设install.wim的位置处于虚拟光驱G盘的“sources”目录，想要将这文件分割为两部分，放置到D盘，具体的命令为：
+
+     Dism /Split-Image /ImageFile:"G:\sources\install.wim" /SWMFile:D:\install.swm /FileSize:4000
+
+3. Power on PC and select boot to UsbKey, follow the setup guide to install OS.
